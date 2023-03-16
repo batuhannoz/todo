@@ -1,7 +1,7 @@
 package math
 
 func Add(a int, b int) int {
-	return 1
+	return a + b
 }
 
 func Subtract(a int, b int) int {
