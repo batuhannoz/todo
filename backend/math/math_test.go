@@ -1,7 +1,7 @@
 package math_test
 
 import (
-	"github.com/batuhannoz/todo/math"
+	"github.com/batuhannoz/todo/backend/math"
 	"testing"
 )
 
