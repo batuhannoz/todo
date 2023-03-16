@@ -1,0 +1,19 @@
+version: "3.7"
+
+services:
+
+  db:
+    image: mysql
+    command: --default-authentication-plugin=mysql_native_password
+    environment:
+      MYSQL_DATABASE: 'todo_app'
+      MYSQL_PASSWORD: 'password'
+      MYSQL_ROOT_PASSWORD: 'password'
+    ports:
+        - '3306:3306'
+    volumes:
+      - ./database/init.ddl:/docker-entrypoint-initdb.d/1-ddl.sql
+
+  # backend:
+
+  # frontend:

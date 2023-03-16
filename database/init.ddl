@@ -4,6 +4,6 @@ USE todo_app;
 CREATE TABLE IF NOT EXISTS `todo` (
     `id` INT NOT NULL AUTO_INCREMENT,
     `create_date` DATETIME DEFAULT(CURDATE()),
-    `task` VARCHAR(400),
+    `task` VARCHAR(150),
     PRIMARY KEY (`id`)
 );
