@@ -22,10 +22,10 @@ jobs:
         run: go test -v ./...
 
       - name: Use Node.js 18.x
-        working-directory: frontend
         uses: actions/setup-node@v3
         with:
           node-version: 18.x
+        working-directory: frontend
       - run: npm ci
       - run: npm run build --if-present
       - run: npm test
