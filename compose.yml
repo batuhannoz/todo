@@ -14,6 +14,12 @@ services:
     volumes:
       - ./database/init.ddl:/docker-entrypoint-initdb.d/1-ddl.sql
 
-  # backend:
+  backend:
+    build: backend
+    depends_on: db
+    restart: always
+    ports:
+      - "3000:3000"
+
 
   # frontend:
