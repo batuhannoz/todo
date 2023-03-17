@@ -6,7 +6,7 @@
 <script>
 import AddTodo from "./components/AddTodo.vue";
 import TodoList from "./components/TodoList.vue";
-import {addTodo} from "./api/todo";
+import {addTodo} from "./api/api";
 
 export default {
   components: { AddTodo, TodoList },
@@ -17,7 +17,7 @@ export default {
   },
   methods: {
     addTask(task) {
-      addTodo("someurl", task)
+      // todo add task
       this.todos.push({
         "task": task
       })
