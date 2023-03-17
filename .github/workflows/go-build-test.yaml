@@ -1,4 +1,4 @@
-name: main
+name: Go Build Test
 
 on: [push]
 

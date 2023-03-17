@@ -7,7 +7,8 @@
     "build": "vite build",
     "preview": "vite preview",
     "test:unit": "vitest",
-    "test:e2e": "playwright test"
+    "test:e2e": "playwright test",
+    "test:pact": "cross-env CI=true react-scripts test --testTimeout 30000 pact.spec.js"
   },
   "dependencies": {
     "vue": "^3.2.47"
