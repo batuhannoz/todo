@@ -17,10 +17,14 @@ export default {
   },
   methods: {
     addTask(task) {
-      // todo add task
-      this.todos.push({
-        "task": task
-      })
+      addTodo("http://localhost:3000", {task: task})
+          .then((r) => {
+            if (r.status === 200) {
+              this.todos.push({
+                "task": task
+              })
+            }
+          })
     }
   }
 }

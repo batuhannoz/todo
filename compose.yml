@@ -16,10 +16,17 @@ services:
 
   backend:
     build: backend
-    depends_on: db
+    depends_on:
+      - db
     restart: always
     ports:
       - "3000:3000"
 
 
-  # frontend:
+  frontend:
+    build: frontend
+    depends_on:
+      - backend
+    ports:
+      - "80:80"
+

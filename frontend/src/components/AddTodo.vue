@@ -1,6 +1,6 @@
 <template>
   <input v-model="task"/>
-  <button @click="clicked"/>
+  <button @click="clicked" style="width: 100px;margin-left: 20px">Add Task</button>
 </template>
 
 <script>
