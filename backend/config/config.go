@@ -16,7 +16,8 @@ type MySQL struct {
 type Server struct {
 }
 
-func GetConfig() *Config {
+func GetConfig(path string) *Config {
+
 	return &Config{
 		&MySQL{},
 		&Server{},

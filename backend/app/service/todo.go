@@ -4,6 +4,7 @@ import (
 	"github.com/batuhannoz/todo/backend/app/handler"
 	"github.com/batuhannoz/todo/backend/app/store/model"
 	"github.com/gofiber/fiber/v2"
+	"time"
 )
 
 type TodoStore interface {
@@ -21,5 +22,10 @@ func NewTodoService(store TodoStore) *TodoService {
 }
 
 func (t *TodoService) AddTodo(ctx *fiber.Ctx, request handler.TodoRequest) error {
+	t.todoStore.AddTodo(&model.Todo{
+		ID:         0,
+		Task:       request.Task,
+		CreateDate: time.Now(),
+	})
 	return nil
 }
