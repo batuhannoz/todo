@@ -2,7 +2,6 @@ import { Pact, Matchers, Verifier } from '@pact-foundation/pact';
 import {addTodo} from "./api";
 import {describe, beforeAll, afterAll, test, expect} from "vitest";
 
-
 describe('API Pact test', () => {
     let provider
     beforeAll(async () => {

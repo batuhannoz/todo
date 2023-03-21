@@ -6,9 +6,9 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "test:unit": "vitest",
+    "test:unit": "vitest --config ./vitest.unit.config.js",
     "test:e2e": "playwright test",
-    "test:pact": "CI=true api.pact.spec.js"
+    "test:pact": "vitest --config ./vitest.cdc.config.js"
   },
   "dependencies": {
     "@pact-foundation/pact": "^11.0.2",
