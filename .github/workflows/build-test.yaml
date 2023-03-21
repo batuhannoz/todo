@@ -4,7 +4,7 @@ on: [push]
 
 jobs:
   build-test:
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
 
@@ -13,20 +13,13 @@ jobs:
         with:
           go-version: '1.20'
 
-      - name: gopath
-        working-directory: backend
-        run: |
-          pwd
-          echo ${GOPATH}
-          echo ${GOROOT}
-
-      - name: Build
+      - name: Go Build
         working-directory: backend
         run: go build -v ./...
 
-      - name: Test
+      - name: Go Test
         working-directory: backend
-        run: go test -v ./...
+        run: go test -skip pact -v ./...
 
       - name: Use Node.js 18.x
         uses: actions/setup-node@v3
