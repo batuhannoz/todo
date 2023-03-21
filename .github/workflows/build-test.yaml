@@ -15,7 +15,7 @@ jobs:
 
       - name: go mod init
         working-directory: backend
-        run: go mod init
+        run: go help
 
       - name: Build
         working-directory: backend
