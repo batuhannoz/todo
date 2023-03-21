@@ -1,28 +1,18 @@
 package main
 
 import (
-	"fmt"
-	"github.com/gofiber/fiber/v2"
-	"github.com/gofiber/fiber/v2/middleware/cors"
-	"log"
-	"net/http"
+	TodoApp "github.com/batuhannoz/todo/backend/app"
+	"github.com/batuhannoz/todo/backend/config"
 )
 
 func main() {
-	err := StartServer(3000)
+	appConfig := config.GetConfig()
+	app := TodoApp.App{}
+	err := app.Initialize(appConfig)
 	if err != nil {
-		log.Fatal(err)
+		panic(err)
 	}
-	log.Println("Provider Service Listening :3000")
-}
-
-func StartServer(port int) error {
-	app := fiber.New()
-	app.Use(cors.New())
-	app.Post("/todo/add", func(c *fiber.Ctx) error {
-		c.Status(http.StatusOK)
-		return nil
-	})
-	err := app.Listen(fmt.Sprintf(":%d", port))
-	return err
+	if err := app.Run(appConfig.Server.Port); err != nil {
+		panic(err)
+	}
 }

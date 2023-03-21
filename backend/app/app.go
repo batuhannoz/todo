@@ -39,5 +39,5 @@ func (a *App) registerRoutes(handler *handler.AppHandler) {
 }
 
 func (a *App) Run(host string) error {
-	return a.fiber.Listen(host)
+	return a.fiber.Listen(":" + host)
 }

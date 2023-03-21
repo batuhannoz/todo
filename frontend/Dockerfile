@@ -1,4 +1,8 @@
-FROM node:lts-alpine AS builder
+FROM node:18 AS builder
+
+RUN apt-get update -y && \
+    apt-get install -y git g++ python3 build-essential && \
+    rm -rf /var/lib/apt/lists/*
 
 WORKDIR /app
 

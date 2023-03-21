@@ -2,6 +2,8 @@ package main
 
 import (
 	"fmt"
+	TodoApp "github.com/batuhannoz/todo/backend/app"
+	"github.com/batuhannoz/todo/backend/config"
 	"github.com/k0kubun/pp"
 	"github.com/pact-foundation/pact-go/dsl"
 	"github.com/pact-foundation/pact-go/types"
@@ -30,7 +32,13 @@ func (s *Settings) create() {
 
 func TestProvider(t *testing.T) {
 	port, _ := utils.GetFreePort()
-	go StartServer(port)
+	appConfig := config.GetConfig()
+	app := TodoApp.App{}
+	err := app.Initialize(appConfig)
+	if err != nil {
+		panic(err)
+	}
+	app.Run(fmt.Sprintf("%d", port))
 
 	settings := Settings{}
 	settings.create()

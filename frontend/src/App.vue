@@ -17,7 +17,7 @@ export default {
   },
   methods: {
     addTask(task) {
-      addTodo("http://localhost:3000", {task: task})
+      addTodo(process.env.API_HOST + ":" + process.env.API_PORT, {task: task})
           .then((r) => {
             if (r.status === 200) {
               this.todos.push({

@@ -1,5 +1,7 @@
 package config
 
+import "os"
+
 type Config struct {
 	*MySQL
 	*Server
@@ -14,12 +16,20 @@ type MySQL struct {
 }
 
 type Server struct {
+	Port string
 }
 
-func GetConfig(path string) *Config {
-
+func GetConfig() *Config {
 	return &Config{
-		&MySQL{},
-		&Server{},
+		&MySQL{
+			Host:     os.Getenv("DB_HOST"),
+			Port:     os.Getenv("DB_PORT"),
+			User:     os.Getenv("DB_USER"),
+			Password: os.Getenv("DB_PASSWORD"),
+			Database: os.Getenv("DB_NAME"),
+		},
+		&Server{
+			Port: os.Getenv("API_PORT"),
+		},
 	}
 }

@@ -1,0 +1,54 @@
+version: "3.7"
+
+services:
+  db:
+    image: mysql
+    command: --default-authentication-plugin=mysql_native_password
+    environment:
+      MYSQL_USER: 'batuhan'
+      MYSQL_ROOT_USER: 'root'
+      MYSQL_DATABASE: 'todo_app'
+      MYSQL_PASSWORD: 'password'
+      MYSQL_ROOT_PASSWORD: 'password'
+    ports:
+        - '3306:3306'
+    volumes:
+      - ./database/init.ddl:/docker-entrypoint-initdb.d/1-ddl.sql
+    networks:
+      TodoNetwork:
+        ipv4_address: 192.168.80.5
+
+  backend:
+    build: backend
+    depends_on:
+      - db
+    env_file:
+      - .env/.env.dev
+    restart: always
+    ports:
+      - "3000:3000"
+    networks:
+      TodoNetwork:
+        ipv4_address: 192.168.80.6
+
+  frontend:
+    build: frontend
+    restart: always
+    depends_on:
+      - backend
+    env_file:
+      - .env/.env.dev
+    ports:
+      - "80:80"
+    networks:
+      TodoNetwork:
+        ipv4_address: 192.168.80.7
+
+networks:
+  TodoNetwork:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: 192.168.0.0/16
+          gateway: 192.168.0.1
