@@ -11,11 +11,14 @@ jobs:
       - name: Set up Go
         uses: actions/setup-go@v3
         with:
-          go-version: 1.20
+          go-version: '1.20'
 
-      - name: Install dependencies
+      - name: gopath
         working-directory: backend
-        run: go get .
+        run: |
+          pwd
+          echo ${GOPATH}
+          echo ${GOROOT}
 
       - name: Build
         working-directory: backend
