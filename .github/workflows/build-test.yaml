@@ -47,7 +47,7 @@ jobs:
         run: docker-compose -f docker-compose.dev.yml down
 
       - name: remove stopped service containers
-        run: docker-compose rm
+        run: docker-compose rm -f docker-compose.dev.yml
 
       - name: docker compose up
         run: docker-compose -f docker-compose.dev.yml up --build -d
