@@ -55,10 +55,7 @@ jobs:
     needs: dockerize-deploy-test
     runs-on: self-hosted
     steps:
-      - name: build dockerfile
-        run: docker build -t cdc-test -f Dockerfile-cdc .
-
-      - name: build dockerfile
-        run: docker run getting-started
+      - name: build and run cdc test
+        run: docker run -it $(docker build -q .)
   #ui-acceptance-tests:
   #deploy2Prod:
