@@ -51,11 +51,12 @@ jobs:
 
 
   consumer-driven-contract-test:
-    name: cdc test
+    name: ubuntu-latest
     needs: dockerize-deploy-test
     runs-on: self-hosted
     steps:
       - name: build and run cdc test
+        uses: actions/checkout@v3
         run: docker run -it $(docker build -q .)
   #ui-acceptance-tests:
   #deploy2Prod:
