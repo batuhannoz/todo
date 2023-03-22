@@ -10,7 +10,9 @@ COPY /frontend/ .
 
 RUN npm install
 
-RUN npm run test:pact
+RUN ls -la
+
+CMD ["npm", "run", "test:pact"]
 
 FROM golang:1.20
 
@@ -30,8 +32,8 @@ ENV PATH $PATH:/app/pact/bin
 
 ENV CGO_ENABLED=0
 
-COPY /backend/ .
+COPY /backend .
 
-COPY --from=builder /app/pact .
+COPY --from=builder /app/pacts .
 
 CMD ["go", "test", "provider_test.go"]

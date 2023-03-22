@@ -44,7 +44,7 @@ func TestProvider(t *testing.T) {
 	verifyRequest := types.VerifyRequest{
 		ProviderBaseURL: fmt.Sprintf("http://%s:%d", settings.Host, port),
 		ProviderVersion: settings.ProviderVersion,
-		PactURLs:        []string{"./pacts"},
+		PactURLs:        []string{"./consumer-todo-provider-todo.json"},
 		StateHandlers: map[string]types.StateHandler{
 			"sends a todo and expects 200 in return": func() error {
 				return nil
@@ -53,7 +53,6 @@ func TestProvider(t *testing.T) {
 		PublishVerificationResults: true,
 		FailIfNoPactsFound:         true,
 	}
-
 	verifyResponses, err := pact.VerifyProvider(t, verifyRequest)
 	if err != nil {
 		t.Fatal(err)
