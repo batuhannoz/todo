@@ -43,8 +43,13 @@ jobs:
     needs: build-test
     runs-on: self-hosted
     steps:
+      - name: docker compose down
+        run: docker-compose -f docker-compose.dev.yml down
+
       - name: docker compose up
-        run: docker-compose -f docker-compose.dev.yml up --build
+        run: docker-compose -f docker-compose.dev.yml up --build -d
+
+
 
   #consumer-driven-contract-tests:
   #ui-acceptance-tests:
