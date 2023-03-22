@@ -2,8 +2,6 @@ package main
 
 import (
 	"fmt"
-	TodoApp "github.com/batuhannoz/todo/backend/app"
-	"github.com/batuhannoz/todo/backend/config"
 	"github.com/k0kubun/pp"
 	"github.com/pact-foundation/pact-go/dsl"
 	"github.com/pact-foundation/pact-go/types"
@@ -32,13 +30,6 @@ func (s *Settings) create() {
 
 func TestProvider(t *testing.T) {
 	port, _ := utils.GetFreePort()
-	appConfig := config.GetConfig()
-	app := TodoApp.App{}
-	err := app.Initialize(appConfig)
-	if err != nil {
-		panic(err)
-	}
-	app.Run(fmt.Sprintf("%d", port))
 
 	settings := Settings{}
 	settings.create()
@@ -53,7 +44,7 @@ func TestProvider(t *testing.T) {
 	verifyRequest := types.VerifyRequest{
 		ProviderBaseURL: fmt.Sprintf("http://%s:%d", settings.Host, port),
 		ProviderVersion: settings.ProviderVersion,
-		PactURLs:        []string{"../frontend/pacts/consumer-todo-provider-todo.json"},
+		PactURLs:        []string{"./pacts"},
 		StateHandlers: map[string]types.StateHandler{
 			"sends a todo and expects 200 in return": func() error {
 				return nil

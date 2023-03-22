@@ -14,7 +14,10 @@ services:
       - ./database/init.ddl:/docker-entrypoint-initdb.d/1-ddl.sql
 
   backend:
-    build: backend
+    build:
+      context: backend
+      dockerfile: Dockerfile
+
     depends_on:
       - db
     restart: always

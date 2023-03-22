@@ -8,7 +8,7 @@
     "preview": "vite preview",
     "test:unit": "vitest --config ./vitest.unit.config.js",
     "test:e2e": "playwright test",
-    "test:pact": "vitest --config ./vitest.cdc.config.js"
+    "test:pact": "vitest --config ./vitest.cdc.config.js --run"
   },
   "dependencies": {
     "@pact-foundation/pact": "^11.0.2",

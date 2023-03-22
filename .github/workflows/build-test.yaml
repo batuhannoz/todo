@@ -46,11 +46,20 @@ jobs:
       - name: docker compose down
         run: docker-compose -f docker-compose.dev.yml down
 
+      - name: remove stopped service containers
+        run: docker compose rm
+
       - name: docker compose up
         run: docker-compose -f docker-compose.dev.yml up --build -d
 
 
+  consumer-driven-contract-test:
+    name: cdc test
+    needs: dockerize-deploy-test
+    runs on: self-hosted
+    steps:
+      - name: run cdc dockerfile
+        run: docker run -it $(docker build -f Dockerfile-cdc .)
 
-  #consumer-driven-contract-tests:
   #ui-acceptance-tests:
   #deploy2Prod:
