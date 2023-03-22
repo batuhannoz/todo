@@ -56,7 +56,7 @@ jobs:
   consumer-driven-contract-test:
     name: cdc test
     needs: dockerize-deploy-test
-    runs on: self-hosted
+    runs-on: self-hosted
     steps:
       - name: run cdc dockerfile
         run: docker run -it $(docker build -f Dockerfile-cdc .)
