@@ -38,8 +38,14 @@ jobs:
         working-directory: frontend
         run: npm run test:unit
 
-  #dockerize:
-  #deploy2TestEnv:
+  dockerize-deploy-test:
+    name: dockerize and deploy to test env
+    needs: build-test
+    runs-on: self-hosted
+    steps:
+      - name: docker compose up
+        run: docker-compose -f docker-compose.dev.yml up --build
+
   #consumer-driven-contract-tests:
   #ui-acceptance-tests:
   #deploy2Prod:
